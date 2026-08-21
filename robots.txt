@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aquamaster-hydraulika.pl/sitemap.xml
+

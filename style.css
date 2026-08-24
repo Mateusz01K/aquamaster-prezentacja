@@ -28,7 +28,7 @@
   --color-text-on-dark-mute-3: #5f8395;
 
   /* Fonty */
-  --font-heading: 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-heading: 'Inter Tight', system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
   --font-body: 'Inter', system-ui, sans-serif;
 
@@ -149,21 +149,15 @@ a:hover {
   flex: none;
 }
 
-/* ---------- Logo (placeholder do podmiany na plik z assets/logo/) ---------- */
+/* ---------- Logo ---------- */
 
 .logo-mark {
   width: 44px;
   height: 44px;
   flex: none;
-  border: 1px dashed rgba(255, 255, 255, .35);
-  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: .05em;
-  color: rgba(255, 255, 255, .5);
   overflow: hidden;
 }
 
@@ -985,6 +979,15 @@ a:hover {
   max-width: 34ch;
 }
 
+.footer-logo {
+  gap: 12px;
+}
+
+.footer-logo .logo-mark {
+  width: 32px;
+  height: 32px;
+}
+
 .footer-col {
   display: flex;
   flex-direction: column;
@@ -996,7 +999,7 @@ a:hover {
   font-size: 11px;
   letter-spacing: .16em;
   text-transform: uppercase;
-  color: var(--color-text-on-dark-mute-3);
+  color: var(--color-text-on-dark-mute-2);
 }
 
 .footer-col a {

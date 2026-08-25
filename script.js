@@ -136,6 +136,16 @@
       });
     });
 
+    // Powrot na gore (logo i strzalka) — gasimy podkreslenie od razu,
+    // zeby nie przejezdzalo przez sekcje w drodze do hero
+    var toTop = document.querySelectorAll('.logo-link[href="#top"], #back-to-top');
+    Array.prototype.forEach.call(toTop, function (el) {
+      el.addEventListener('click', function () {
+        setActive(null);
+        lockSpy();
+      });
+    });
+
     if (!('IntersectionObserver' in window)) return;
 
     var observer = new IntersectionObserver(function (entries) {

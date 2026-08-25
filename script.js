@@ -74,6 +74,48 @@
     });
   }
 
+  /* ---------- Podswietlanie linku aktualnej sekcji ---------- */
+
+  function initScrollSpy() {
+    var links = Array.prototype.slice.call(
+      document.querySelectorAll('.main-nav a.nav-link')
+    ).filter(function (a) {
+      return a.getAttribute('href').charAt(0) === '#';
+    });
+    if (!links.length) return;
+
+    var sections = [];
+    links.forEach(function (a) {
+      var el = document.getElementById(a.getAttribute('href').slice(1));
+      if (el) sections.push({ el: el, link: a });
+    });
+    if (!sections.length) return;
+
+    function setActive(link) {
+      links.forEach(function (a) {
+        a.classList.toggle('is-active', a === link);
+      });
+    }
+
+    // Klik od razu podswietla, bez czekania na przewiniecie
+    links.forEach(function (a) {
+      a.addEventListener('click', function () { setActive(a); });
+    });
+
+    if (!('IntersectionObserver' in window)) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        for (var i = 0; i < sections.length; i++) {
+          if (sections[i].el === entry.target) setActive(sections[i].link);
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+
+    sections.forEach(function (s) { observer.observe(s.el); });
+  }
+
   /* ---------- Przycisk "wróć na górę" ---------- */
 
   function initBackToTop() {
@@ -188,6 +230,7 @@
     initHeaderHeight();
     initReveal();
     initMobileNav();
+    initScrollSpy();
     initBackToTop();
     initContactForm();
     initLightbox();

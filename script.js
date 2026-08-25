@@ -97,14 +97,49 @@
       });
     }
 
+    // Po kliknieciu strona przewija sie plynnie i mija sekcje po drodze.
+    // Na ten czas wstrzymujemy sledzenie, zeby podkreslenie nie przeskakiwalo.
+    var locked = false;
+    var safetyTimer = null;
+    var idleTimer = null;
+
+    function unlock() {
+      locked = false;
+      clearTimeout(safetyTimer);
+      clearTimeout(idleTimer);
+      window.removeEventListener('scroll', onScrollIdle);
+      window.removeEventListener('scrollend', unlock);
+    }
+
+    function onScrollIdle() {
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(unlock, 150);
+    }
+
+    function lockSpy() {
+      unlock();
+      locked = true;
+      // Bezpiecznik na wypadek, gdyby przewijanie w ogole nie ruszylo
+      safetyTimer = setTimeout(unlock, 1200);
+      if ('onscrollend' in window) {
+        window.addEventListener('scrollend', unlock);
+      } else {
+        window.addEventListener('scroll', onScrollIdle, { passive: true });
+      }
+    }
+
     // Klik od razu podswietla, bez czekania na przewiniecie
     links.forEach(function (a) {
-      a.addEventListener('click', function () { setActive(a); });
+      a.addEventListener('click', function () {
+        setActive(a);
+        lockSpy();
+      });
     });
 
     if (!('IntersectionObserver' in window)) return;
 
     var observer = new IntersectionObserver(function (entries) {
+      if (locked) return;
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
         for (var i = 0; i < sections.length; i++) {

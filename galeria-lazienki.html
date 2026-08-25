@@ -6,16 +6,18 @@
 <title>Galeria realizacji — remonty łazienek Rzeszów | AquaMaster</title>
 <meta name="description" content="Realizacje remontów łazienek AquaMaster — od skucia po fugę. Rzeszów, Kolbuszowa, Strzyżów i okolice.">
 <link rel="canonical" href="https://aquamaster-hydraulika.pl/galeria-lazienki.html">
+<link rel="icon" href="assets/logo/aquamaster-logo.svg" type="image/svg+xml">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Galeria: remonty łazienek — AquaMaster">
 <meta property="og:description" content="Realizacje remontów łazienek AquaMaster w Rzeszowie, Kolbuszowej, Strzyżowie i okolicy.">
 <meta property="og:url" content="https://aquamaster-hydraulika.pl/galeria-lazienki.html">
+<meta property="og:image" content="https://aquamaster-hydraulika.pl/assets/mapa-obszaru.jpg">
 <meta property="og:locale" content="pl_PL">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -24,14 +26,14 @@
 <header class="site-header">
   <div class="container">
     <a href="index.html#top" class="logo-link">
-      <!-- TODO: podmienić na assets/logo/logo.png -->
-      <span class="logo-mark" aria-hidden="true">LOGO</span>
+      <span class="logo-mark"><img src="assets/logo/aquamaster-logo.svg" alt="AquaMaster"></span>
       <span class="logo-text">
         <span class="name"><span class="aqua">Aqua</span><span class="master">Master</span></span>
         <span class="tagline">Usługi Hydrauliczne</span>
       </span>
     </a>
-    <nav class="main-nav" aria-label="Nawigacja główna">
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="main-nav"><span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span></button>
+    <nav class="main-nav" id="main-nav" aria-label="Nawigacja główna">
       <a href="index.html#uslugi" class="nav-link">Usługi</a>
       <a href="index.html#obszar" class="nav-link">Obszar</a>
       <a href="index.html#kontakt" class="nav-link">Kontakt</a>
@@ -92,7 +94,7 @@
   <section class="gallery-cta">
     <div class="container gallery-cta-inner">
       <h2>Masz podobną robotę do zrobienia?</h2>
-      <p>Opisz co i gdzie trzeba naprawić lub wymienić — oddzwonimy z wyceną.</p>
+      <p>Opisz, co i gdzie trzeba naprawić lub wymienić — oddzwonimy z wyceną.</p>
       <div class="hero-actions">
         <a href="index.html#kontakt" class="btn btn-primary btn-hero">
           Bezpłatna wycena
@@ -107,7 +109,10 @@
 <footer class="site-footer">
   <div class="container footer-grid">
     <div>
-      <span class="logo-text name"><span class="aqua" style="color:var(--color-text-on-dark)">Aqua</span><span class="master" style="color:var(--color-accent)">Master</span></span>
+      <span class="logo-link footer-logo">
+        <span class="logo-mark"><img src="assets/logo/aquamaster-logo.svg" alt="AquaMaster"></span>
+        <span class="logo-text name"><span class="aqua" style="color:var(--color-text-on-dark)">Aqua</span><span class="master" style="color:var(--color-accent)">Master</span></span>
+      </span>
       <p>Usługi hydrauliczne, remonty łazienek i ogrzewanie. Firma AquaMaster.</p>
     </div>
     <div class="footer-col">
@@ -119,7 +124,7 @@
       <span class="footer-label">Godziny</span>
       <span class="footer-hours">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--color-teal)" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
-        Pon–Pt · 7:00–18:00
+        Pon–Pt · 8:00–16:00
       </span>
       <span class="footer-hours-sub plain">Sob · po wcześniejszym umówieniu</span>
     </div>
@@ -140,6 +145,10 @@
   <img id="lightbox-img" src="" alt="">
   <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Następne zdjęcie">&#8250;</button>
 </div>
+
+<button class="back-to-top" id="back-to-top" aria-label="Wróć na górę">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 7.828V20h-2V7.828l-5.364 5.364-1.414-1.414L12 4l7.778 7.778-1.414 1.414L13 7.828Z"></path></svg>
+</button>
 
 <script src="script.js"></script>
 </body>

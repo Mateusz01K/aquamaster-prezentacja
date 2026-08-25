@@ -27,6 +27,71 @@
     items.forEach(function (el) { observer.observe(el); });
   }
 
+  /* ---------- Wysokosc paska -> zmienna CSS ---------- */
+
+  function initHeaderHeight() {
+    var header = document.querySelector('.site-header');
+    if (!header) return;
+
+    function apply() {
+      var h = Math.round(header.getBoundingClientRect().height);
+      if (h) document.documentElement.style.setProperty('--header-h', h + 'px');
+    }
+
+    apply();
+    window.addEventListener('resize', apply);
+    window.addEventListener('load', apply);
+  }
+
+  /* ---------- Menu mobilne (hamburger) ---------- */
+
+  function initMobileNav() {
+    var toggle = document.getElementById('nav-toggle');
+    var nav = document.getElementById('main-nav');
+    if (!toggle || !nav) return;
+
+    function close() {
+      nav.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+
+    toggle.addEventListener('click', function () {
+      var isOpen = nav.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    // Klik w link zamyka menu (kotwice na tej samej stronie)
+    nav.addEventListener('click', function (e) {
+      if (e.target.closest('a')) close();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') close();
+    });
+
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 860) close();
+    });
+  }
+
+  /* ---------- Przycisk "wróć na górę" ---------- */
+
+  function initBackToTop() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+
+    function update() {
+      btn.classList.toggle('is-visible', window.scrollY > 500);
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+
+    btn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
   /* ---------- Formularz kontaktowy (Web3Forms) ---------- */
 
   function initContactForm() {
@@ -89,11 +154,13 @@
       img.src = el.getAttribute('data-lightbox-src');
       img.alt = el.querySelector('img') ? el.querySelector('img').alt : '';
       lightbox.hidden = false;
+      document.body.classList.add('lightbox-open');
       closeBtn.focus();
     }
 
     function close() {
       lightbox.hidden = true;
+      document.body.classList.remove('lightbox-open');
       img.src = '';
     }
 
@@ -118,7 +185,10 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
+    initHeaderHeight();
     initReveal();
+    initMobileNav();
+    initBackToTop();
     initContactForm();
     initLightbox();
   });

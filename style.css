@@ -743,6 +743,13 @@ a:hover {
   max-width: 46ch;
 }
 
+/* Kolumna ze zdjeciami wysrodkowana wzgledem tekstu - inaczej wisi u gory,
+   bo opisy uslug sa znacznie wyzsze niz zdjecia. Na waskich ekranach bez znaczenia,
+   bo kolumny ukladaja sie jedna pod druga. */
+.service-media {
+  align-self: center;
+}
+
 .service-media-stack {
   position: relative;
   height: clamp(220px, 26vw, 300px);
@@ -1108,9 +1115,11 @@ a:hover {
 }
 
 .social-link:hover {
-  border-color: var(--color-teal);
-  background: rgba(21, 145, 180, .14);
-  color: #fff;
+  border-color: var(--color-accent);
+  /* zapasowe tlo dla starszych przegladarek, nizej wersja w kolorze akcentu */
+  background: rgba(255, 255, 255, .07);
+  background: color-mix(in srgb, var(--color-accent) 16%, transparent);
+  color: var(--color-accent);
 }
 
 /* ---------- Formularz kontaktowy ---------- */
